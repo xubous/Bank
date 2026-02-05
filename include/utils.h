@@ -13,7 +13,8 @@ typedef struct User
     char * password_user;
 } User;
 
-char * create_string ( );
-int register_user ( User * user );
+void print_test ( char * arg );
+// char * create_string ( );
+User * register_user ( );
 
 #endif
