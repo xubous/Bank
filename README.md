@@ -11,5 +11,6 @@ Its main purpose is to practice low-level programming concepts such as dynamic m
 - Basic utilities for memory management and string handling
 - Modular organization using header and source files
 
-## Project Structure
+## Compile
 
+run make
