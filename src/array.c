@@ -20,6 +20,7 @@ User ** create_array ( int size )
 
         users [ i ] -> name_user = null;
         users [ i ] -> password_user = null;
+        users [ i ] -> cash = 0.0;
     }
 
     // print_users ( users, size );
@@ -38,7 +39,7 @@ void print_users ( User ** users, int size )
 
     for ( int i = 0; i < size; i ++ )
     {
-        printf ( "User [ %d ] -> Username: %s Password: %s\n", i, users [ i ] -> name_user, users [ i ] -> password_user );
+        printf ( "User [ %d ] -> Id: %d Username: %s Password: %s Cash: %lf Address: %p\n", i, users [ i ] -> id, users [ i ] -> name_user, users [ i ] -> password_user, users [ i ] -> cash ,( void * ) & users [ i ] );
     }
 }
 
@@ -56,7 +57,7 @@ void free_users ( User ** users, int size )
     print_test ( "end free\n" );
 }
 
-void push ( User ** users, int size )
+void push ( User ** users, int size, User * new_user )
 {
     print_test ( "enter added\n" );
 
@@ -69,9 +70,23 @@ void push ( User ** users, int size )
         print_test ( "while added\n" );
     }
 
-    User * new_user = register_user (  );
-
     users [ index ] = new_user;
 
     print_test ( "added\n" );
+}
+
+int login ( User ** users, int size, User * user )
+{
+    for ( int i = 0; i < size; i ++ )
+    {
+        if ( users [ i ] -> name_user == null ) continue;
+
+        if ( compare_two ( users [ i ] -> name_user, user -> name_user ) == 0 &&
+             compare_two ( users [ i ] -> password_user, user -> password_user ) == 0 )
+        {
+            return i;
+        }
+    }
+
+    return - 1;
 }

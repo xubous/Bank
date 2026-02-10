@@ -1,5 +1,10 @@
 #include "../include/utils.h"
 
+void clear_buffer ( )
+{
+    while ( getchar ( ) != '\n' ) getchar ( );
+}
+
 void print_test ( char * arg )
 {
     printf ( "%s", arg );
@@ -31,6 +36,114 @@ User * register_user ( )
     user -> password_user [ strcspn ( user -> password_user, "\n" ) ] = '\0';
 
     return user;
+}
+
+int length ( char * str )
+{
+    int size = 0;
+
+    if ( str == null ) return size;
+
+    while ( str [ size ] != '\0' ) size ++;
+
+    return size;
+}
+
+int compare_two ( char * str01, char * str02 )
+{
+    int size01 = length ( str01 );
+    int size02 = length ( str02 );
+    
+    if ( size01 != size02 ) return 1;
+
+    int size = size01;
+
+    for ( int i = 0; i < size; i ++ )
+    {
+        if ( str01 [ i ] != str02 [ i ] )
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+double get_cash ( User * user )
+{
+    if ( user == null ) return 0.0;
+
+    return user -> cash;
+}
+
+void deposit ( User * user )
+{
+    if ( user == null )
+    {
+        print_test ( "Error: user null\n" );
+        return;
+    }
+
+    double value = 0;
+
+    printf ( "Write value to deposit:\n" );
+    scanf ( "%lf", & value );
+    getchar ( );
+
+    if ( value <= 0 )
+    {
+        print_test ( "Invalid value\n" );
+        return;
+    }
+
+    user -> cash += value;
+
+    print_test ( "Deposit done\n" );
+}
+
+void withdraw ( User * user )
+{
+    if ( user == null )
+    {
+        print_test ( "Error: user null\n" );
+        return;
+    }
+
+    double value = 0;
+
+    printf ( "Write value to withdraw:\n" );
+    scanf ( "%lf", & value );
+    getchar ( );
+
+    if ( value <= 0 )
+    {
+        print_test ( "Invalid value\n" );
+        return;
+    }
+
+    if ( value > user -> cash )
+    {
+        print_test ( "Not enough cash\n" );
+        return;
+    }
+
+    user -> cash -= value;
+
+    print_test ( "Withdraw done\n" );
+}
+
+void print_statement ( User * user )
+{
+    if ( user == null )
+    {
+        print_test ( "Error: user null\n" );
+        return;
+    }
+
+    printf ( "----- Statement -----\n" );
+    printf ( "User: %s\n", user -> name_user );
+    printf ( "Cash: %.2lf\n", user -> cash );
+    printf ( "---------------------\n" );
 }
 
 // char * create_string ( )
