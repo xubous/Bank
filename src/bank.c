@@ -73,7 +73,7 @@ void test ( )
 
 User ** users = create_array ( 2 );
 
-    User * logged = null;   // <<< AQUI fora do while
+    User * logged = null;
 
     while ( 1 )
     {
@@ -117,7 +117,7 @@ User ** users = create_array ( 2 );
 
                 if ( index != -1 )
                 {
-                    logged = users [ index ];   // <<< Agora persiste
+                    logged = users [ index ];
                     print_test ( "Logged\n" );
                 }
                 else
